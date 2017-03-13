@@ -42,8 +42,18 @@ module RestClient
       end
     end
 
+    # Allows the default user-agent to be set
+    def self.default_user_agent=(value)
+      @default_user_agent = value
+      @default_user_agent_set = true
+    end
+
+    def self.default_user_agent_set?
+      @default_user_agent_set || false
+    end
+
     def self.default_user_agent
-      "rest-client/#{VERSION} (#{architecture}) #{ruby_agent_version}"
+      @default_user_agent || "rest-client/#{VERSION} (#{architecture}) #{ruby_agent_version}"
     end
   end
 end
